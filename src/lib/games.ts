@@ -1,4 +1,4 @@
-export type GameSlug = "rainbow-six-siege" | "master-duel" | "valorant" | "cs2";
+export type GameSlug = "rainbow-six-siege" | "master-duel" | "cs2";
 
 export type Game = {
   slug: GameSlug;
@@ -36,15 +36,7 @@ export const games: Game[] = [
     links: [{ label: "Explore Master Duel companion", href: "https://ygom.untapped.gg/" }],
   },
   {
-    slug: "valorant", name: "VALORANT", shortName: "VALORANT", tag: "TACTICAL / 03",
-    accent: "#ff6f7d", background: "#241417", surface: "#342024", surface2: "#452a30", line: "#684047", glow: "#9f3d50",
-    description: "A player-first space for competitive performance and match trends.",
-    stats: ["Rank", "K/D", "Match history"],
-    coverage: "Personal VALORANT stats require Riot production access and each player's opt-in through Riot Sign On. Neither is connected here.",
-    links: [{ label: "Riot data policy", href: "https://developer.riotgames.com/docs/valorant" }],
-  },
-  {
-    slug: "cs2", name: "Counter-Strike 2", shortName: "CS2", tag: "TACTICAL / 04",
+    slug: "cs2", name: "Counter-Strike 2", shortName: "CS2", tag: "TACTICAL / 03",
     accent: "#ffc774", background: "#24201a", surface: "#342d22", surface2: "#443827", line: "#68543a", glow: "#906532",
     description: "Counter-Strike activity and a future home for verified competitive records.", steamAppId: 730,
     stats: ["Premier rating", "K/D", "Match history"],
