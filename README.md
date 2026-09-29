@@ -1,6 +1,15 @@
-# DAYZ TRACKER
+# GAME TRACKER
 
-A source-aware DayZ server directory and player-stat tracker. The design is inspired by the dense dashboard layout of R6 Tracker, with independent DAYZ TRACKER branding.
+A source-aware tracker hub for DayZ, Rainbow Six Siege, Yu-Gi-Oh! Master Duel, VALORANT, and Counter-Strike 2. The dashboard uses independent branding and a dense tracker layout.
+
+## Game coverage
+
+- Switch between all five games from the navigation bar. DayZ retains its public BattleMetrics server directory and optional authorized player-record import.
+- The Rainbow Six Siege, Master Duel, and CS2 pages request the current Steam player count. This is a Steam-only count, not a total across platforms. The count shows as unavailable if Steam cannot be reached.
+- VALORANT personal stats require Riot production access and player opt-in through Riot Sign On. No player accounts or private data feeds are connected for the additional games.
+- The game pages link to official or relevant external resources without importing those services' private data or claiming global leaderboards.
+
+The hosted Site at https://dayz-tracker.cheeky-raven-1631.chatgpt.site is private to its owner. GitHub changes do not automatically republish the Site.
 
 ## What works
 
@@ -50,4 +59,4 @@ This is a **format example**, not real player data. Supply only fields actually 
 
 ## Data limitations
 
-BattleMetrics states that searching by Steam ID or another unique identifier is available only to server owners and administrators for their own data. This project does not attempt to bypass that restriction. Public server population is a source observation, not an assertion about an individual player's history. No deployment is configured.
+BattleMetrics states that searching by Steam ID or another unique identifier is available only to server owners and administrators for their own data. This project does not attempt to bypass that restriction. Public server population is a source observation, not an assertion about an individual player's history.
