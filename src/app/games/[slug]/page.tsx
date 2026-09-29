@@ -5,7 +5,6 @@ import { gameHref, games, getGame } from "../../../lib/games";
 import { getSteamCurrentPlayers } from "../../../lib/steam";
 
 export const dynamic = "force-dynamic";
-export function generateStaticParams() { return games.filter((game) => game.slug !== "dayz").map((game) => ({ slug: game.slug })); }
 
 export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
