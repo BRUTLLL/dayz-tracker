@@ -3,6 +3,7 @@ import { ArrowUpRight, BarChart3, Database, RadioTower, Search, ShieldCheck } fr
 import { SearchForm } from "./components/SearchForm";
 import { getPublicServers } from "../lib/battlemetrics";
 import { hasDatabase, playerCount } from "../lib/db";
+import { gameHref, games } from "../lib/games";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,8 @@ export default async function Home() {
       </div>
     </div></section>
     <div className="shell main-content">
+      <div className="section-heading game-section-heading"><div><div className="eyebrow">THE TRACKER NETWORK</div><h2>CHOOSE YOUR GAME</h2></div><span className="subtle">Five game hubs · coverage varies by source</span></div>
+      <div className="game-grid">{games.map((game) => <Link href={gameHref(game)} key={game.slug} className="game-card" style={{ "--game-accent": game.accent } as React.CSSProperties}><span className="game-card-top">{game.tag}<ArrowUpRight size={18}/></span><strong>{game.shortName}</strong><small>{game.description}</small><span className="game-card-action">OPEN TRACKER <span>→</span></span></Link>)}</div>
       <div className="section-heading"><div><div className="eyebrow">THE OVERVIEW</div><h2>TRACKER DASHBOARD</h2></div><span className="subtle">What we can verify right now</span></div>
       <div className="metric-grid">
         <div className="metric-card"><span className="metric-icon"><RadioTower size={20}/></span><span className="metric-label">PUBLIC SERVERS</span><strong>{directory.error ? "—" : directory.servers.length}</strong><small>Shown from current source response</small></div>
