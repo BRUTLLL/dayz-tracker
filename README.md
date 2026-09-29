@@ -1,28 +1,53 @@
 # DAYZ TRACKER
 
-A public DayZ player-stat tracking website foundation.
+A source-aware DayZ server directory and player-stat tracker. The design is inspired by the dense dashboard layout of R6 Tracker, with independent DAYZ TRACKER branding.
 
-## Features
-- Player search by Steam name / Steam ID
-- Public player profile structure
-- Tracked playtime, kills, deaths, K/D and other stats
-- Server history
-- Weapon/map statistics
-- Historical snapshots
-- Source and coverage indicators
-- Ingestion adapter architecture
+## What works
 
-## Important
-The site never invents missing statistics. Data is marked by source and coverage level.
+- Public DayZ server directory from BattleMetrics, refreshed approximately every five minutes. If the source is unavailable, the page shows an error instead of fabricated data.
+- Player search against an optional PostgreSQL database of authorized, source-backed records.
+- Source, observation time and coverage labels for imported player stats.
+- Responsive overview, players, servers, leaderboards and coverage pages.
+
+No global DayZ kills, deaths, playtime or Steam ID lookup is claimed without an authorized data source. Leaderboards remain unavailable until comparable combat records exist. Public BattleMetrics server listings do not grant access to private player identifiers.
 
 ## Run locally
-Requires Node.js 20+.
+
+Requires Node.js 20+ and npm.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open http://localhost:3000.
+Open http://localhost:3000. Run `npm run build` to check the production build.
 
-Production data connectors are intentionally separated from the UI so legitimate public/community sources can be added safely.
+## Connect authorized player data
+
+1. Set up a PostgreSQL database, and set `DATABASE_URL` in `.env.local` (do not commit this file).
+2. Run `npm run db:setup` with `DATABASE_URL` available in the shell.
+3. Obtain player stats from a server you own or another feed you are authorized to use. Create a JSON array with records in the following format:
+
+```json
+[
+  {
+    "id": "server-identifier:player-identifier",
+    "steamId": "7656119...",
+    "displayName": "Example survivor",
+    "aliases": [],
+    "observedAt": "2026-09-30T00:00:00Z",
+    "source": "My DayZ server",
+    "sourceUrl": "https://example.com/source",
+    "coverage": "partial",
+    "stats": { "kills": 4, "deaths": 2, "playtimeSeconds": 3600 }
+  }
+]
+```
+
+This is a **format example**, not real player data. Supply only fields actually provided by your source; omit unknown stats. Use `partial` when the record covers one server or a limited period. Run `npm run data:import -- path/to/authorized-data.json` with `DATABASE_URL` in the shell. The importer validates nonnegative integer values and stores a snapshot and provenance for each import. Do not put private server credentials or data files in the repository.
+
+`BATTLEMETRICS_API_TOKEN` is optional for the public server feed. Only add a token for which you have permission, and keep it server-side in `.env.local` or the eventual hosting environment.
+
+## Data limitations
+
+BattleMetrics states that searching by Steam ID or another unique identifier is available only to server owners and administrators for their own data. This project does not attempt to bypass that restriction. Public server population is a source observation, not an assertion about an individual player's history. No deployment is configured.
