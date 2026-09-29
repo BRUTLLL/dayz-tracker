@@ -10,6 +10,26 @@ export interface Player {
   coverage: Coverage;
 }
 
+export interface TrackedPlayer extends Player {
+  id: string;
+  source: string;
+  sourceUrl?: string;
+  updatedAt: string;
+  stats?: PlayerStats;
+}
+
+export interface PublicServer {
+  id: string;
+  name: string;
+  players: number | null;
+  maxPlayers: number | null;
+  map: string | null;
+  status: string;
+  country: string | null;
+  sourceUrl: string;
+  observedAt: string | null;
+}
+
 export interface PlayerStats {
   playtimeSeconds?: number;
   kills?: number;
