@@ -1,28 +1,23 @@
 {
-  "name": "dayz-tracker",
+  "name": "game-tracker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "db:setup": "tsx scripts/setup-db.ts",
-    "data:import": "tsx scripts/import-stats.ts"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "15.5.21",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "lucide-react": "0.468.0",
-    "pg": "8.13.1"
+    "lucide-react": "0.468.0"
   },
   "devDependencies": {
     "@types/node": "22.10.1",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
-    "typescript": "5.7.2",
-    "@types/pg": "8.11.10",
-    "tsx": "4.19.2"
+    "typescript": "5.7.2"
   }
 }
